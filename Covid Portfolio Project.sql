@@ -42,22 +42,14 @@ order by Max_Count_Death desc;
 
 
 --Global Numbers
-select 
-	sum(new_cases) as New_Cases, 
-	sum(new_deaths) as New_Deaths, 
-	round((sum(new_deaths)/NULLIF(sum(new_cases),0))*100,2) as DeathPercentage
-from 
-	CovidDeaths
-where 
-	continent is not NULl
+select sum(new_cases) as New_Cases, sum(new_deaths) as New_Deaths, round((sum(new_deaths)/NULLIF(sum(new_cases),0))*100,2) as DeathPercentage
+from CovidDeaths
+where continent is not NULl
 order by 1,2;
 
 
 ---------------Looking at Total Population VS Vaccinations	
-select
-	CD.continent,CD.location,
-	CD.date,CD.population,CV.new_vaccinations,
-	sum(convert(bigint,CV.new_vaccinations)) over(partition by CD.location order by CD.location, CD.date) as Rolling_People_Vaccinated
+select CD.continent, CD.location, CD.date,CD.population, CV.new_vaccinations, sum(convert(bigint,CV.new_vaccinations)) over(partition by CD.location order by CD.location, CD.date) as Rolling_People_Vaccinated
 from CovidDeaths as CD join CovidVacinations as CV on CD.location = CV.location and CV.date = CD.date
 where CD.continent is not null
 order by 2,3;
@@ -93,7 +85,7 @@ select
 	CD.date,CD.population,CV.new_vaccinations,
 	sum(convert(bigint,CV.new_vaccinations)) over(partition by CD.location order by CD.location, CD.date) as Rolling_People_Vaccinated
 from CovidDeaths as CD join CovidVacinations as CV on CD.location = CV.location and CV.date = CD.date
---where CD.continent is not null
+
 
 select *, (Rolling_People_Vaccinated/population)*100 as Rate_Rolling_People_Vaccinated
 from #PercentagePopulationVaccinated
