@@ -49,7 +49,8 @@ order by 1,2;
 
 
 ---------------Looking at Total Population VS Vaccinations	
-select CD.continent, CD.location, CD.date,CD.population, CV.new_vaccinations, sum(convert(bigint,CV.new_vaccinations)) over(partition by CD.location order by CD.location, CD.date) as Rolling_People_Vaccinated
+select CD.continent, CD.location, CD.date,CD.population, CV.new_vaccinations, 
+	sum(convert(bigint,CV.new_vaccinations)) over(partition by CD.location order by CD.location, CD.date) as Rolling_People_Vaccinated
 from CovidDeaths as CD join CovidVacinations as CV on CD.location = CV.location and CV.date = CD.date
 where CD.continent is not null
 order by 2,3;
