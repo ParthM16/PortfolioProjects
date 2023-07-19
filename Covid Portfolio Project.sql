@@ -2,7 +2,7 @@
 
 
 --Looking at Total cases vs Total Deaths
--- Shows likelihood of dying if you contact covid in your country
+-- Shows the likelihood of dying if you contact covid in your country
 select location,date,total_cases, new_cases, total_deaths, round((total_deaths/total_cases)*100,2) as Death_Percentage
 from CovidDeaths
 where continent is not NULL
@@ -17,7 +17,7 @@ where continent is not NULL
 order by 1,2;
 
 
---Looking at countries with Highest Infection Rate Compared to Population
+--Looking at countries with the Highest Infection Rate Compared to the Population
 select location, population,max(total_cases) as HighestInfectionCount, round(max((total_cases/population))*100,2) as PercentagePopulationInfected
 from CovidDeaths
 where continent is not NULL
@@ -25,7 +25,7 @@ group by location, population
 order by PercentagePopulationInfected desc;
 
 
--- Showing Countries with highest death count per polupation
+-- Showing Countries with the highest death count per population
 select location, max(total_deaths) as TotalDeathCount
 from CovidDeaths
 where continent is not NULL
@@ -92,7 +92,7 @@ select *, (Rolling_People_Vaccinated/population)*100 as Rate_Rolling_People_Vacc
 from #PercentagePopulationVaccinated
 
 
----------Creating View to store data for later  visualizations
+--------- View -------------------- 
 
 create view PercentagePopulationVaccinated as 
 select
