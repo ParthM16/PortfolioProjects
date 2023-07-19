@@ -15,6 +15,7 @@
 
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; View
 
-  ![View](https://github.com/ParthM16/SQL-Covid-Analysis/assets/136796479/65e968af-5199-4cbd-b0ef-5924adb4380d)
+  ![View](https://github.com/ParthM16/SQL-Covid-Analysis/assets/136796479/6e8880b3-cf55-4e73-8ed4-6ba3e82fc1cb)
+
 
 
